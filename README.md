@@ -15,7 +15,7 @@ following to your `composer.json` file:
 ```json
 {
     "require": {
-        "imt/doctrine-migrations-multi": "dev-master"
+        "imt/doctrine-migrations-multi": "0.9.*"
     }
 }
 ```
