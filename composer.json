@@ -1,0 +1,38 @@
+{
+    "name": "imt/doctrine-migrations-multi",
+    "description": "This repository provides a simple script that adds the ability to use Doctrine Migrations with more than one (multiple) connection (database).",
+    "type": "library",
+    "keywords": [
+        "doctrine",
+        "migrations",
+        "database"
+    ],
+    "homepage": "http://github.com/IgorTimoshenko/doctrine-migrations-multi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Timoshenko",
+            "email": "igor.timoshenko@i.ua",
+            "homepage": "http://igortimoshenko.com"
+        }
+    ],
+    "support": {
+        "email": "igor.timoshenko@i.ua",
+        "issues": "http://github.com/IgorTimoshenko/doctrine-migrations-multi/issues",
+        "wiki": "http://github.com/IgorTimoshenko/doctrine-migrations-multi/wiki",
+        "source": "http://github.com/IgorTimoshenko/doctrine-migrations-multi"
+    },
+    "require": {
+        "php": "^5.5|^7.0",
+        "doctrine/migrations": "~1.0",
+        "symfony/event-dispatcher": "~2.3"
+    },
+    "require-dev": {
+        "phploc/phploc": "2.*",
+        "squizlabs/php_codesniffer": "2.*"
+    },
+    "minimum-stability": "dev",
+    "bin": [
+        "bin/doctrine-migrations-multi"
+    ]
+}
