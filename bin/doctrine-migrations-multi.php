@@ -29,8 +29,10 @@ if (!$autoloader) {
 }
 
 use Doctrine\DBAL\DriverManager;
-use Doctrine\DBAL\Migrations\Tools\Console\ConsoleRunner;
+use Doctrine\DBAL\Migrations\MigrationsVersion;
+use Doctrine\DBAL\Migrations\Tools\Console\Command;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Helper\DialogHelper;
@@ -82,17 +84,27 @@ if (class_exists(QuestionHelper::class)) {
     $helperSet->set(new DialogHelper(), 'dialog');
 }
 
-$application = ConsoleRunner::createApplication($helperSet);
+$application = new Application('Doctrine Migrations', MigrationsVersion::VERSION());
 $application->setDispatcher($eventDispatcher);
+$application->setHelperSet($helperSet);
+$application->setCatchExceptions(true);
 $application->getDefinition()->addOptions(
     [
-        new InputOption('connection', null, InputOption::VALUE_OPTIONAL, 'The connection name.'),
+        new InputOption('connection', null, InputOption::VALUE_OPTIONAL, 'The connection name'),
         new InputOption(
             'db-configuration-multi',
             null,
             InputOption::VALUE_OPTIONAL,
-            'The path to a database connection configuration file with more than one connection.'
+            'The path to a database connection configuration file with more than one connection'
         ),
     ]
 );
+$application->addCommands(array(
+    new Command\ExecuteCommand(),
+    new Command\GenerateCommand(),
+    new Command\LatestCommand(),
+    new Command\MigrateCommand(),
+    new Command\StatusCommand(),
+    new Command\VersionCommand(),
+));
 $application->run();
